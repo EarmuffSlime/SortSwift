@@ -7,7 +7,7 @@ public class ControllerProductPurchase implements IController{
 
 	public void access(ModelProductRequest request) {
 		//Call function controlerPuchaseLogic
-		ControllerPuchaseLogic.puchase(request);
+		ControllerPurchaseLogic.purchase(request);
 		
 	}
 

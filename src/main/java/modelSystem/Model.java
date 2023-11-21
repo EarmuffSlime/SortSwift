@@ -1,6 +1,7 @@
 package modelSystem;
 
 import java.util.HashMap;
+import utilities.structure.*;
 
 public class Model {
 	private static Model instance;
