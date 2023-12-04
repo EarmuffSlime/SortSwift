@@ -6,7 +6,15 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="lib" path="C:/Users/viral/Downloads/EECS3311/labtest3/sqlite-jdbc-3.44.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/viral/Downloads/EECS3311/labtest3/slf4j-api-1.7.36.jar"/>
+	<classpathentry kind="lib" path="ExtraLibraries/javafx.base.jar"/>
+	<classpathentry kind="lib" path="ExtraLibraries/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="ExtraLibraries/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="ExtraLibraries/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="ExtraLibraries/javafx.media.jar"/>
+	<classpathentry kind="lib" path="ExtraLibraries/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="ExtraLibraries/javafx.web.jar"/>
+	<classpathentry kind="lib" path="ExtraLibraries/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="ExtraLibraries/slf4j-api-1.7.36.jar"/>
+	<classpathentry kind="lib" path="ExtraLibraries/sqlite-jdbc-3.43.2.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

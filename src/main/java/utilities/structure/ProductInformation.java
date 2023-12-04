@@ -5,25 +5,24 @@ public class ProductInformation {
 	private String name;
 	private int price;
 	private int quantity;
-	private int PrcStrategy;
-	private int MaxQuantity;
-	private int MinQuantity;
-	private int RestQuantity;
+	private int maxQuantity;
+	private int minQuantity;
+	private int restockQuantity;
+	private int discountID;
 	//Pricing strategy coming soon
 	
-	private ProductInformation(int productID, String name, int price, int quantity, int PrcStrategy, int MaxQuantity, int MinQuantity, int RestQuantity ) {
+	private ProductInformation(int productID, String name, int price, int quantity, int max, int min,int restock, int discount) {
 		this.productID = productID;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
-			this.PrcStrategy = PrcStrategy;
-			this.MaxQuantity = MaxQuantity;
-			this.MinQuantity = MinQuantity;
-			this.RestQuantity = RestQuantity;
+		this.maxQuantity = max;
+		this.minQuantity = min;
+		this.discountID = discount;
 	}
 	
-	public static ProductInformation createProduct(int productID, String name, int price, int quantity, int PrcStrategy, int MaxQuantity, int MinQuantity, int RestQuantity ) {
-		return new ProductInformation(productID, name, price, quantity, PrcStrategy, MaxQuantity, MinQuantity, RestQuantity);
+	public static ProductInformation createProduct(int productID, String name, int price, int quantity, int max, int min,int restock, int discount) {
+		return new ProductInformation(productID, name, price, quantity,  max, min, restock, discount);
 	}
 
 	public int getProductID() {
@@ -59,39 +58,40 @@ public class ProductInformation {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	public int getPrcStrategy() {
-		return PrcStrategy;
-	}
-	
-	public void setPrcStrategy(int PrcStrategy ) {
-		this.PrcStrategy = PrcStrategy;
-		
-	}
 
 	public int getMaxQuantity() {
-		return MaxQuantity;
+		return maxQuantity;
 	}
-
+	
 	public void setMaxQuantity(int maxQuantity) {
-		this.MaxQuantity = maxQuantity;
+		this.maxQuantity = maxQuantity;
 	}
 
 	public int getMinQuantity() {
-		return MinQuantity;
-	}
-
-	public void setMinQuantity(int minQuantity) {
-		this.MinQuantity = minQuantity;
-	}
-
-	public int getRestQuantity() {
-		return RestQuantity;
-	}
-
-	public void setRestQuantity(int restQuantity) {
-		this.RestQuantity = restQuantity;
+		return minQuantity;
 	}
 	
+	public void setMinQuantity(int minQuantity) {
+		this.minQuantity = minQuantity;
+	}
+	
+	
+
+	public int getRestockQuantity() {
+		return restockQuantity;
+	}
+
+	public void setRestockQuantity(int restockQuantity) {
+		this.restockQuantity = restockQuantity;
+	}
+
+	public int getDiscountID() {
+		return discountID;
+	}
+
+
+	public void setDiscountID(int discountID) {
+		this.discountID = discountID;
+	}
 	
 }
