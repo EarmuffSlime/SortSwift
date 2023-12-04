@@ -9,69 +9,55 @@ import java.sql.Statement;
 
 public class DB {
 
-		public  String url;
-		public  String user;
-		public  String password;
-		public static Connection conn;
-		private static DB db;
+    public static String url;
+    public static String user;
+    public static String password;
+    public static Connection conn;
+    private static DB db;
 
-		public static DB getDb() {
-			if(db == null) {
-				db = new DB();
-				System.out.println("db working");		}  
+    public static DB getDb() {
+        if (db == null) {
+            db = new DB();
+            System.out.println("db working");
+        }
 
-			return db;
-		}
+        return db;
+    }
 
-	   
+    private DB() {
+        try {
 
-		private DB() {
-			try {
+            String url = "jdbc:sqlite:warehouse.db";  // SQLite connection string
+            // connection
+            conn = DriverManager.getConnection(url);
+            Statement statement = conn.createStatement();
 
-				String url = "jdbc:mysql://localhost:3306/";
-				String user = "root";
-				String password = "Vir@l1055";
-//				 connection
-				conn = DriverManager.getConnection(url, user, password);
-				Statement statement = conn.createStatement();
-				String checkDB = "select Count(*), schema_name from information_schema.schemata where schema_name='warehouse2';";
-				String create_database = "create database warehouse2;";
-				String use_database = "use warehouse2;";
+            String create_adminTable = "CREATE TABLE IF NOT EXISTS admins_info ("
+                    + "admin_id TEXT NOT NULL UNIQUE, "
+                    + "username TEXT, "
+                    + "password TEXT, "
+                    + "PRIMARY KEY (username, password)"
+                    + ");";
 
-				String create_adminTable = "create table admins_info" + "(admin_id varchar(25) not NULL unique,"
-						+ " username CHAR(10), " + " password VARCHAR(25), " + " PRIMARY KEY ( username, password ));";
+            String create_productTable = "CREATE TABLE IF NOT EXISTS products ("
+                    + "product_id INTEGER PRIMARY KEY, "
+                    + "product_name TEXT, "
+                    + "price REAL, "
+                    + "quantity INTEGER, "
+                    + "PRCStrategy TEXT, "
+                    + "MaxQuantity INTEGER, "
+                    + "MinQuantity INTEGER, "
+                    + "RestQuantity INTEGER"
+                    + ");";
 
-				String create_productTable = "CREATE TABLE products ("
-						+ "product_id INT , "
-						+ "product_name CHAR(25), "
-						+ "price DECIMAL(5,2), "
-						+ "quantity INT, "
-						+ "PRCStrategy CHAR(25)"
-						+ " MaxQuantity INT "
-						+ " MinQuantity INT "
-						+ "RestQuantity INT "
-						+ "PRIMARY KEY (product_id)"
-						+ ")";
-				// string pricing strat, max quantity, min quantity, restock quantity
+            statement.executeUpdate(create_adminTable);
+            statement.executeUpdate(create_productTable);
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-				ResultSet rs = statement.executeQuery(checkDB);
-				rs.next();
-				if(rs.getInt(1) == 0) {
-					statement.executeUpdate(create_database);
-					statement.executeUpdate(use_database);
-					statement.executeUpdate(create_adminTable);
-					statement.executeUpdate(create_productTable);
-					statement.executeUpdate(create_productTable);
-				}
-				else
-				{
-					statement.executeUpdate(use_database);
-					//statement.executeUpdate(create_productTable);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}}
 
 
 
@@ -189,4 +175,4 @@ public class DB {
 			     }
 			    
 		}
-}
+
