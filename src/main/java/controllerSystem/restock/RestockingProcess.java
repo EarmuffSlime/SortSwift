@@ -14,8 +14,8 @@ public class RestockingProcess implements IRestockInterface {
 		int currentQuantity = Model.getModel().getProductListing().get(productID).getQuantity();
 		int restock = Model.getModel().getProductListing().get(productID).getRestockQuantity();
 		
-		while(maxQuantity != currentQuantity) {
-			
+		while(maxQuantity < currentQuantity) {
+			// Add a counter for the admin viewers
 			if(maxQuantity - currentQuantity >= restock) {
 				currentQuantity = currentQuantity + restock;
 			}
@@ -26,6 +26,8 @@ public class RestockingProcess implements IRestockInterface {
 		
 			
 		}
+		
+		// Change from direct connection to interface connection
 		
 		Model.getModel().getProductListing().get(productID).setQuantity(currentQuantity);
 		System.out.println("Restocking Operation for Product "+ productID + " completed");

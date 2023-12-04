@@ -6,6 +6,10 @@ import utilities.structure.*;
 
 public class ModelPurchase implements IModelWrite{
 
+	public ModelPurchase() {
+		
+	}
+	
 	private void access(ProductBasicInfo request) {
 		ModelUpdateProduct.DecreaseStoredProducts(request.getProductID(), request.getProductAmount());
 	}

@@ -5,6 +5,10 @@ import utilities.structure.ProductBasicInfo;
 
 public class ModelRestock implements IModelWrite{
 
+	public ModelRestock() {
+		
+	}
+	
 	private void access(ProductBasicInfo request) {
 		ModelUpdateProduct.IncreaseStoredProducts(request.getProductID(), request.getProductAmount());
 	}
