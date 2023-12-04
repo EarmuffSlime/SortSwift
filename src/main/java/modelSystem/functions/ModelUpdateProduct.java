@@ -8,9 +8,15 @@ import modelSystem.observer.UpdatePublisher;
 
 public class ModelUpdateProduct {
 	
-	public static void updateProducts(int productID, int amount) {
+	public static void DecreaseStoredProducts(int productID, int amount) {
 		HashMap<Integer, ProductInformation> productListing = Model.getModel().getProductListing();
 		productListing.get(productID).setQuantity(productListing.get(productID).getQuantity()-amount);
+		UpdatePublisher.getPublisher().notify(productListing.get(productID).getName(), amount);
+	}
+	
+	public static void IncreaseStoredProducts(int productID, int amount) {
+		HashMap<Integer, ProductInformation> productListing = Model.getModel().getProductListing();
+		productListing.get(productID).setQuantity(productListing.get(productID).getQuantity()+amount);
 		UpdatePublisher.getPublisher().notify(productListing.get(productID).getName(), amount);
 	}
 }
