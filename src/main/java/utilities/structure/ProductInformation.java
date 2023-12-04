@@ -11,8 +11,7 @@ public class ProductInformation {
 	private int discountID;
 	//Pricing strategy coming soon
 	
-	private ProductInformation(int productID, String name, int price, int quantity,
-									int max, int min,int restock, int discount) {
+	private ProductInformation(int productID, String name, int price, int quantity, int max, int min,int restock, int discount) {
 		this.productID = productID;
 		this.name = name;
 		this.price = price;
@@ -35,7 +34,9 @@ public class ProductInformation {
 	}
 
 	public String getName() {
+		System.out.println(name);
 		return name;
+		
 	}
 
 	public void setName(String name) {
@@ -92,7 +93,5 @@ public class ProductInformation {
 	public void setDiscountID(int discountID) {
 		this.discountID = discountID;
 	}
-	
-	
 	
 }
