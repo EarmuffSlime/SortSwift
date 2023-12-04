@@ -1,7 +1,7 @@
-package pricingStrategyFactory;
+package utilities.factory.pricingStrategyFactory;
 
-import pricingStrategy.PricingStrategy;
-import pricingStrategy.PricingStrategy001;
+import controllerSystem.pricingStrategy.PricingStrategy;
+import controllerSystem.pricingStrategy.PricingStrategy001;
 
 public class Strategy001Factory implements IPricingStrategyFactory {
 

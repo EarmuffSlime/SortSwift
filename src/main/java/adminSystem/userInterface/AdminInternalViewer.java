@@ -1,4 +1,4 @@
-package adminUserInterface;
+package adminSystem.userInterface;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;

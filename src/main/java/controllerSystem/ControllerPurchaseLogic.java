@@ -1,14 +1,14 @@
 package controllerSystem;
 
-import modelSystem.connector.ModelProductAccess;
-import pricingStrategy.PricingStrategy;
-import utilities.structure.ModelProductRequest;
-import controller.restock.RestockingProcess;
-import factoryRepo.PricingStrategyFactoryRepo;
+import modelSystem.connector.ReadProductController;
+import utilities.factory.repo.PricingStrategyFactoryRepo;
+import utilities.structure.ProductBasicInfo;
+import controllerSystem.pricingStrategy.PricingStrategy;
+import controllerSystem.restock.RestockingProcess;
 import modelSystem.*;
 
 public class ControllerPurchaseLogic {
-	public static void purchase(ModelProductRequest request) {
+	public static void purchase(ProductBasicInfo request) {
 		//Compare with model product list
 		
 		// Exceeds max stock quantity

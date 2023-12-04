@@ -1,11 +1,11 @@
-package factoryRepo;
+package utilities.factory.repo;
 
 import java.util.HashMap;
 
-import pricingStrategyFactory.IPricingStrategyFactory;
-import pricingStrategyFactory.Strategy001Factory;
-import pricingStrategyFactory.Strategy002Factory;
-import pricingStrategyFactory.Strategy003Factory;
+import utilities.factory.pricingStrategyFactory.IPricingStrategyFactory;
+import utilities.factory.pricingStrategyFactory.Strategy001Factory;
+import utilities.factory.pricingStrategyFactory.Strategy002Factory;
+import utilities.factory.pricingStrategyFactory.Strategy003Factory;
 
 
 public class PricingStrategyFactoryRepo {

@@ -1,4 +1,4 @@
-package controller.restock;
+package controllerSystem.restock;
 
 import modelSystem.Model;
 

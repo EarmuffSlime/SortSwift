@@ -1,4 +1,4 @@
-package adminUserInterface;
+package adminSystem.userInterface;
 	
 import javafx.stage.Stage;
 import javafx.scene.Scene;

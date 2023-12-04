@@ -1,4 +1,4 @@
-package pricingStrategy;
+package controllerSystem.pricingStrategy;
 
 import utilities.structure.ModelProductRequest;
 
