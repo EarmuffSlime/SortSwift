@@ -18,6 +18,7 @@ public class ControllerPurchaseLogic {
 			ExceedsMaxQuantity.productExceedsMaxQuantity(request);
 		}
 		
+		//IF you have time, Refactor this for direct call
 		int currentQuantity = Model.getModel().getProductListing().get(request.getProductID()).getQuantity();
 		
 		// need to restock product 

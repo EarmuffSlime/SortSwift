@@ -1,12 +1,12 @@
 package controllerSystem.pricingStrategy;
 
 import modelSystem.Model;
-import utilities.structure.ModelProductRequest;
+import utilities.structure.ProductBasicInfo;
 
 public class PricingStrategy001 extends PricingStrategy {
 
 	@Override
-	public double productStrategy(ModelProductRequest request) {
+	public double productStrategy(ProductBasicInfo request) {
 		// TODO Auto-generated method stub
 		if (request.getProductAmount() >= 50) {
 			

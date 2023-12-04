@@ -1,5 +1,6 @@
-package controllerSystem;
+package controllerSystem.connector;
 
+import controllerSystem.ControllerPurchaseLogic;
 import utilities.structure.ProductBasicInfo;
 import utilities.structure.Request;
 

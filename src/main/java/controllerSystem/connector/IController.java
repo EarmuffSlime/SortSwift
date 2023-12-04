@@ -1,4 +1,4 @@
-package controllerSystem;
+package controllerSystem.connector;
 
 import utilities.structure.*;
 
