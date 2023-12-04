@@ -1,17 +1,16 @@
 package modelSystem.connector;
 
 import modelSystem.functions.ModelUpdateProduct;
-import utilities.structure.ModelProductRequest;
-import utilities.structure.Request;
+import utilities.structure.ProductBasicInfo;
 
 public class ModelRestock implements IModelWrite{
 
-	private void access(ModelProductRequest request) {
+	private void access(ProductBasicInfo request) {
 		ModelUpdateProduct.IncreaseStoredProducts(request.getProductID(), request.getProductAmount());
 	}
 	
 	@Override
-	public void accessModel(ModelProductRequest request) {
+	public void accessModel(ProductBasicInfo request) {
 		access(request);
 		
 	}

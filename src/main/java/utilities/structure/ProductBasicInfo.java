@@ -1,11 +1,17 @@
 package utilities.structure;
 
-public class ModelProductRequest extends Request{
+public class ProductBasicInfo extends Request{
 	private int productID;
+	private String productName;
 	private int productAmount;
 	
-	public ModelProductRequest(int productID, int amount) {
+	public ProductBasicInfo(int productID, int amount) {
 		this.productID = productID;
+		this.productAmount = amount;
+	}
+	
+	public ProductBasicInfo(String productName, int amount) {
+		this.productName = productName;
 		this.productAmount = amount;
 	}
 	
@@ -15,6 +21,15 @@ public class ModelProductRequest extends Request{
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
+	
+	public String getProductName() {
+		return this.productName;
+	}
+	
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
 	public int getProductAmount() {
 		return productAmount;
 	}

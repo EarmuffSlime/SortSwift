@@ -5,7 +5,12 @@ import java.util.ArrayList;
 import modelSystem.Model;
 
 public class GetProductNames {
-	public static ArrayList<String> execute() {
+	
+	public GetProductNames() {
+		
+	}
+	
+	public ArrayList<String> execute() {
 		ArrayList<String> productNameList = new ArrayList<String>();
 		ArrayList<Integer> idList = Model.getModel().getidList();
 		for (int i = 0; i < idList.size(); i++) {

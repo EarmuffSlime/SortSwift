@@ -2,11 +2,17 @@ package modelSystem.functions;
 
 import java.util.ArrayList;
 
+import modelSystem.Model;
+import utilities.structure.ProductInformation;
+
 public class GetProductSpecific {
 
-	public static ArrayList execute() {
-		// TODO Auto-generated method stub
-		return null;
+	public GetProductSpecific() {
+		
+	}
+	
+	public ProductInformation execute(int id) {
+		return Model.getModel().getProductListing().get(id);
 	}
 
 }

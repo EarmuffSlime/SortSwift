@@ -6,12 +6,12 @@ import utilities.structure.*;
 
 public class ModelPurchase implements IModelWrite{
 
-	private void access(ModelProductRequest request) {
+	private void access(ProductBasicInfo request) {
 		ModelUpdateProduct.DecreaseStoredProducts(request.getProductID(), request.getProductAmount());
 	}
 	
 	@Override
-	public void accessModel(ModelProductRequest request) {
+	public void accessModel(ProductBasicInfo request) {
 		access(request);
 	}
 
