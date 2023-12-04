@@ -5,17 +5,25 @@ public class ProductInformation {
 	private String name;
 	private int price;
 	private int quantity;
+	private int maxQuantity;
+	private int minQuantity;
+	private int restockQuantity;
+	private int discountID;
 	//Pricing strategy coming soon
 	
-	private ProductInformation(int productID, String name, int price, int quantity) {
+	private ProductInformation(int productID, String name, int price, int quantity,
+									int max, int min,int restock, int discount) {
 		this.productID = productID;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
+		this.maxQuantity = max;
+		this.minQuantity = min;
+		this.discountID = discount;
 	}
 	
-	public static ProductInformation createProduct(int productID, String name, int price, int quantity) {
-		return new ProductInformation(productID, name, price, quantity);
+	public static ProductInformation createProduct(int productID, String name, int price, int quantity, int max, int min,int restock, int discount) {
+		return new ProductInformation(productID, name, price, quantity,  max, min, restock, discount);
 	}
 
 	public int getProductID() {
@@ -49,6 +57,42 @@ public class ProductInformation {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	public int getMaxQuantity() {
+		return maxQuantity;
+	}
+	
+	public void setMaxQuantity(int maxQuantity) {
+		this.maxQuantity = maxQuantity;
+	}
+
+	public int getMinQuantity() {
+		return minQuantity;
+	}
+	
+	public void setMinQuantity(int minQuantity) {
+		this.minQuantity = minQuantity;
+	}
+	
+	
+
+	public int getRestockQuantity() {
+		return restockQuantity;
+	}
+
+	public void setRestockQuantity(int restockQuantity) {
+		this.restockQuantity = restockQuantity;
+	}
+
+	public int getDiscountID() {
+		return discountID;
+	}
+
+
+	public void setDiscountID(int discountID) {
+		this.discountID = discountID;
+	}
+	
 	
 	
 }
