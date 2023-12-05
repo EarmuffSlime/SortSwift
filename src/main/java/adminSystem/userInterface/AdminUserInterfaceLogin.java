@@ -59,10 +59,17 @@ public class AdminUserInterfaceLogin {
 		System.out.println("Password entered: " + password);
 		if (USER_CREDS.equals(username) && PASS_CREDS.equals(password)) {
 			System.out.println("LOGGED IN");
-			adminView.adminStart(primaryStage);
+			
+			
 		} else {
 			System.out.println("WRONG CREDS!");
 		}
+	}
+	
+	
+	private void initiateSystem() {
+		
+		adminView.adminStart(primaryStage);
 	}
 	
 }
