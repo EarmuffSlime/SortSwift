@@ -38,7 +38,7 @@ public class Client_UI {
 		// TODO Auto-generated method stub
 
 		Client_UI aCaller = new Client_UI();
-		System.out.println("The server responed : " + aCaller.doThehttpCalltest1("Param1value", "Param2value"));
+		System.out.println("The server responed : " + aCaller.doThehttpCalltest1("20", "10"));
 
 	}
 
