@@ -136,7 +136,7 @@ public class DB {
 		        ResultSet resultSet = statement.executeQuery(selectAdminsQuery);
 
 		        while (resultSet.next()) {
-		            String adminId = resultSet.getString("admin_id");
+		            int adminId = resultSet.getInt("admin_id");
 		            String username = resultSet.getString("username");
 		            String password = resultSet.getString("password");
 
@@ -146,11 +146,11 @@ public class DB {
 		        e.printStackTrace();
 		    }
 		}
-	  public void addAdmin(String adminId, String username, String password) {
+	  public void addAdmin(int adminId, String username, String password) {
 		    try {
 		        String insertAdminQuery = "INSERT INTO admins_info (admin_id, username, password) VALUES (?, ?, ?)";
 		        PreparedStatement pstmt = conn.prepareStatement(insertAdminQuery);
-		        pstmt.setString(1, adminId);
+		        pstmt.setInt(1, adminId);
 		        pstmt.setString(2, username);
 		        pstmt.setString(3, password);
 
@@ -169,6 +169,7 @@ public class DB {
 //		// Add admin
 //		db.addAdmin("admin123", "adminUser", "adminPass");
 ////
+		db.addAdmin(1,"viral10", "1234");
 //		// Retrieve admins
 	db.getAdminsInfo();
 
