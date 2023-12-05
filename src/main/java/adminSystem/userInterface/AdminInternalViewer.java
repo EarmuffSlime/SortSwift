@@ -22,6 +22,8 @@ public class AdminInternalViewer {
     private static AdminInternalViewer instance;
     private CategoryAxis x;
     private NumberAxis y;
+    private VBox vBox;
+    private Label l;
     
     
     private AdminInternalViewer() {
@@ -34,12 +36,14 @@ public class AdminInternalViewer {
         this.y = new NumberAxis();
         this.y.setLabel("Qty");
         
-
         // Bar Chart Creation
         this.chart = new BarChart<>(x, y);
         
     	this.dataPoints = new XYChart.Series<>();
     	this.dataPoints.setName("Products");
+    	
+    	// VBOX Creation
+    	this.vBox = new VBox();
     }
     
     public static AdminInternalViewer getInstance() {
@@ -57,30 +61,10 @@ public class AdminInternalViewer {
         // Data Points Creation
         
         updateBarGraph();
-        
-        // add values
-        //XYChart.Series<String, Number> dataPoints = new XYChart.Series<>();
-        //dataPoints.setName("Products");
-
-        //for (int i = 0; i < products.size(); i++) {
-        //    dataPoints.getData().add(new XYChart.Data<>(products.get(i).getProductName(), products.get(i).getProductAmount()));
-        //}
-
-        //chart.getData().add(dataPoints);
-        //chart.getData().remove(dataPoints);
-
-        // Code for listing data
-        VBox vBox = new VBox();
-
-        for (int i = 0; i < products.size(); i++) {
-            Label l = new Label(products.get(i).getProductName() + " \n\tQty ==> " + products.get(i).getProductAmount());
-            vBox.getChildren().add(l);
-        }
-
-        // vertical box
+        updateVBox();
         HBox hBox = new HBox();
         hBox.getChildren().addAll(chart, vBox);
-        Scene scene = new Scene(hBox, 600, 400); // Adjust the size as needed
+        Scene scene = new Scene(hBox, 800, 400); // Adjust the size as needed
         primaryStage.setScene(scene);
     }
 
@@ -99,6 +83,18 @@ public class AdminInternalViewer {
     
     public void clearBarGraph() {
     	this.chart.getData().remove(this.dataPoints); 
+    }
+    
+    public void updateVBox() {
+    	ArrayList<ProductBasicInfo> products = fetchData();
+    	for (int i = 0; i < products.size(); i++) {
+            this.l = new Label(products.get(i).getProductName() + " \n\tQty ==> " + products.get(i).getProductAmount());
+            vBox.getChildren().add(l);
+        }
+    }
+    
+    public void clearVBox() {
+    	this.vBox.getChildren().remove(l);
     }
     
 }
