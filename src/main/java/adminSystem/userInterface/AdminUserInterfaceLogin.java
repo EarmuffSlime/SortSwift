@@ -1,6 +1,7 @@
 package adminSystem.userInterface;
 	
 import javafx.stage.Stage;
+import database.DB;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,6 +27,9 @@ public class AdminUserInterfaceLogin {
 	public AdminUserInterfaceLogin() {}
 	
 	public void loginStart(Stage primaryStage) {
+		
+		DB database = DB.getDb();
+		
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Login Screen");
 		
