@@ -3,7 +3,7 @@ package utilities.structure;
 public class ProductInformation {
 	private int productID;
 	private String name;
-	private int price;
+	private double price;
 	private int quantity;
 	private int maxQuantity;
 	private int minQuantity;
@@ -11,7 +11,7 @@ public class ProductInformation {
 	private int discountID;
 	//Pricing strategy coming soon
 	
-	private ProductInformation(int productID, String name, int price, int quantity, int max, int min,int restock, int discount) {
+	private ProductInformation(int productID, String name, double price, int quantity, int max, int min,int restock, int discount) {
 		this.productID = productID;
 		this.name = name;
 		this.price = price;
@@ -21,7 +21,7 @@ public class ProductInformation {
 		this.discountID = discount;
 	}
 	
-	public static ProductInformation createProduct(int productID, String name, int price, int quantity, int max, int min,int restock, int discount) {
+	public static ProductInformation createProduct(int productID, String name, double price, int quantity, int max, int min,int restock, int discount) {
 		return new ProductInformation(productID, name, price, quantity,  max, min, restock, discount);
 	}
 
@@ -43,11 +43,11 @@ public class ProductInformation {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

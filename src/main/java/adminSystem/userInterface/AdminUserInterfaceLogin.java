@@ -1,6 +1,12 @@
 package adminSystem.userInterface;
 	
 import javafx.stage.Stage;
+import utilities.structure.AdminCredential;
+
+import java.util.ArrayList;
+
+import adminSystem.AdminInitializer;
+import database.AdminConnection;
 import database.DB;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,12 +29,15 @@ public class AdminUserInterfaceLogin {
 	final String PASS_CREDS = "1";
 	private AdminInternalViewer adminView = new AdminInternalViewer();
 	private Stage primaryStage;
+	private ArrayList<AdminCredential> adminList;
 	
 	public AdminUserInterfaceLogin() {}
 	
 	public void loginStart(Stage primaryStage) {
 		
 		DB database = DB.getDb();
+		AdminConnection adminConnect = new AdminConnection();
+		this.adminList = adminConnect.connect();
 		
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Login Screen");
@@ -63,7 +72,7 @@ public class AdminUserInterfaceLogin {
 		System.out.println("Password entered: " + password);
 		if (USER_CREDS.equals(username) && PASS_CREDS.equals(password)) {
 			System.out.println("LOGGED IN");
-			
+			initiateSystem();
 			
 		} else {
 			System.out.println("WRONG CREDS!");
@@ -72,7 +81,8 @@ public class AdminUserInterfaceLogin {
 	
 	
 	private void initiateSystem() {
-		
+		AdminInitializer adminInit = new AdminInitializer();
+		adminInit.startSystems();
 		adminView.adminStart(primaryStage);
 	}
 	

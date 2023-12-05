@@ -1,20 +1,29 @@
 package utilities.structure;
 
 public class AdminCredential {
+	private int id;
 	private String username;
 	private String password;
 	
-	private AdminCredential(String username, String password) {
+	private AdminCredential(int id, String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 	
-	public static AdminCredential createAdmin(String username, String password) {
-		return new AdminCredential(username, password);
+	public static AdminCredential createAdmin(int id, String username, String password) {
+		return new AdminCredential(id, username, password);
+	}
+	
+	public int getID() {
+		return this.id;
+	}
+	
+	public void setID(int id) {
+		this.id = id;
 	}
 	
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 	
 	public void setUsername(String username) {
@@ -22,7 +31,7 @@ public class AdminCredential {
 	}
 	
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 	
 	public void setPassword(String password) {

@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import utilities.structure.AdminCredential;
 import utilities.structure.ProductInformation;
 import utilities.structure.ProductUpdate;
 
@@ -75,11 +77,12 @@ public class DB {
 	}
 
 	// Method to retrieve data from products table
-	 public void getProduct() {
+	 public ArrayList<ProductInformation> getProduct() {
 	        try {
 	            String selectProductsQuery = "SELECT * FROM products";
 	            Statement statement = conn.createStatement();
 	            ResultSet resultSet = statement.executeQuery(selectProductsQuery);
+	            ArrayList<ProductInformation> productList = new ArrayList<ProductInformation>();
 
 	            while (resultSet.next()) {
 	                int productId = resultSet.getInt("product_id");
@@ -90,11 +93,15 @@ public class DB {
 	                int maxQuantity = resultSet.getInt("MaxQuantity");
 	                int minQuantity = resultSet.getInt("MinQuantity");
 	                int restQuantity = resultSet.getInt("RestQuantity");
+	                
+	                productList.add(ProductInformation.createProduct(productId, productName, price, quantity, maxQuantity, minQuantity, restQuantity, Integer.parseInt(prcStrategy)));
 
 	                System.out.println("Product ID: " + productId + ", Product Name: " + productName + ", Price: " + price + ", Quantity: " + quantity + ", PRC Strategy: " + prcStrategy + ", Max Quantity: " + maxQuantity + ", Min Quantity: " + minQuantity + ", Rest Quantity: " + restQuantity);
 	            }
+	            return productList;
 	        } catch (SQLException e) {
 	            e.printStackTrace();
+	            return null;
 	        }
 	    }
 	  public void getProductNames() {
@@ -129,23 +136,30 @@ public class DB {
 		        e.printStackTrace();
 		    }
 		}
-	  public void getAdminsInfo() {
+	  public ArrayList<AdminCredential> getAdminsInfo() {
 		    try {
 		        String selectAdminsQuery = "SELECT * FROM admins_info";
 		        Statement statement = conn.createStatement();
 		        ResultSet resultSet = statement.executeQuery(selectAdminsQuery);
+		        ArrayList<AdminCredential> adminList = new ArrayList<AdminCredential>();
 
 		        while (resultSet.next()) {
 		            String adminId = resultSet.getString("admin_id");
 		            String username = resultSet.getString("username");
 		            String password = resultSet.getString("password");
+		            
+		            adminList.add(AdminCredential.createAdmin(Integer.parseInt(adminId), username, password));
 
 		            System.out.println("Admin ID: " + adminId + ", Username: " + username + ", Password: " + password);
 		        }
+		        
+		        return adminList;
 		    } catch (SQLException e) {
 		        e.printStackTrace();
+		        return null;
 		    }
-		}
+
+	  }
 	  public void addAdmin(String adminId, String username, String password) {
 		    try {
 		        String insertAdminQuery = "INSERT INTO admins_info (admin_id, username, password) VALUES (?, ?, ?)";
