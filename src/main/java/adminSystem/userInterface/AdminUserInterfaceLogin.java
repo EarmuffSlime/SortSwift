@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 // login btn
 
 public class AdminUserInterfaceLogin {
+	
 	final String USER_CREDS = "J";
 	final String PASS_CREDS = "1";
 	private AdminInternalViewer adminView = new AdminInternalViewer();
@@ -63,4 +64,5 @@ public class AdminUserInterfaceLogin {
 			System.out.println("WRONG CREDS!");
 		}
 	}
+	
 }
