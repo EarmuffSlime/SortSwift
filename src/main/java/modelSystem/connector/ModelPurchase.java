@@ -11,12 +11,17 @@ public class ModelPurchase implements IModelWrite{
 	}
 	
 	private void access(ProductBasicInfo request) {
-		ModelUpdateProduct.DecreaseStoredProducts(request.getProductID(), request.getProductAmount());
+		ModelUpdateProduct.DecreaseStoredProducts(request);
 	}
 	
 	@Override
 	public void accessModel(ProductBasicInfo request) {
 		access(request);
+	}
+
+	@Override
+	public void accessRestock(RestockRequest request) {
+		//Do nothing
 	}
 
 }

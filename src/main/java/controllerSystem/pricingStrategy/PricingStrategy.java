@@ -1,14 +1,18 @@
 package controllerSystem.pricingStrategy;
 
 import modelSystem.Model;
+import modelSystem.connector.ReadProductController;
 import utilities.structure.ProductBasicInfo;
 
 public abstract class PricingStrategy {
 
 	public double totalPrize(ProductBasicInfo request) {
-
-		return (Model.getModel().getProductListing().get(request.getProductID()).getMaxQuantity()) *
-				(Model.getModel().getProductListing().get(request.getProductID()).getPrice());
+		ReadProductController modelConnection = new ReadProductController();
+		
+		return request.getProductAmount() * modelConnection.readSpecific(request.getProductID()).getPrice();
+		
+		//return (Model.getModel().getProductListing().get(request.getProductID()).getMaxQuantity()) *
+				//(Model.getModel().getProductListing().get(request.getProductID()).getPrice());
 	}
 
 	public double discount(ProductBasicInfo request) {

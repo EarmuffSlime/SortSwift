@@ -8,6 +8,10 @@ import utilities.structure.ProductInformation;
 
 public class ReadProductController implements IModelRead{
 
+	public ReadProductController() {
+		
+	}
+	
 	@Override
 	public ArrayList read() {
 		// TODO Auto-generated method stub

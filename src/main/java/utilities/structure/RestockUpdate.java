@@ -6,10 +6,21 @@ public class RestockUpdate extends Update{
 	private int productAmount;
 	private int restockAmount;
 	
+	private RestockUpdate(String name, int amount, int restock) {
+		this.productName = name;
+		this.productAmount = amount;
+		this.restockAmount = restock;
+	}
+	
+	public static RestockUpdate createUpdate(String name, int amount, int restock) {
+		return new RestockUpdate(name, amount, restock);
+	}
+	
+	
 	public String getProductName() {
 		return productName;
 	}
-
+	
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}

@@ -8,6 +8,10 @@ import utilities.structure.ProductInformation;
 
 public class ReadProductViewers implements IModelRead{
 
+	public ReadProductViewers() {
+		
+	}
+	
 	@Override
 	public ArrayList read() {
 		return new GetProductViewerInfo().execute();
