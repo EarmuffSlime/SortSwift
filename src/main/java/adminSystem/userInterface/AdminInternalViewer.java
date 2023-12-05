@@ -17,33 +17,57 @@ import utilities.structure.ProductInformation;
 
 public class AdminInternalViewer {
     private Stage primaryStage;
+    private BarChart<String, Number> chart;
+    private XYChart.Series<String, Number> dataPoints;
+    private static AdminInternalViewer instance;
+    private CategoryAxis x;
+    private NumberAxis y;
+    
+    
+    private AdminInternalViewer() {
+        // Code for making the chart
+        // x Axis
+        this.x = new CategoryAxis();
+        this.x.setLabel("Name");
+
+        // y Axis
+        this.y = new NumberAxis();
+        this.y.setLabel("Qty");
+        
+
+        // Bar Chart Creation
+        this.chart = new BarChart<>(x, y);
+        
+    	this.dataPoints = new XYChart.Series<>();
+    	this.dataPoints.setName("Products");
+    }
+    
+    public static AdminInternalViewer getInstance() {
+    	if (instance == null) {
+    		instance = new AdminInternalViewer();
+    	}
+    	return instance;
+    }
 
     public void adminStart(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
         ArrayList<ProductBasicInfo> products = fetchData();
 
-        // Code for making the chart
-        // x Axis
-        CategoryAxis x = new CategoryAxis();
-        x.setLabel("Name");
-
-        // y Axis
-        NumberAxis y = new NumberAxis();
-        y.setLabel("Qty");
-
-        // bar chart creation
-        BarChart<String, Number> chart = new BarChart<>(x, y);
-
+        // Data Points Creation
+        
+        updateBarGraph();
+        
         // add values
-        XYChart.Series<String, Number> dataPoints = new XYChart.Series<>();
-        dataPoints.setName("Products");
+        //XYChart.Series<String, Number> dataPoints = new XYChart.Series<>();
+        //dataPoints.setName("Products");
 
-        for (int i = 0; i < products.size(); i++) {
-            dataPoints.getData().add(new XYChart.Data<>(products.get(i).getProductName(), products.get(i).getProductAmount()));
-        }
+        //for (int i = 0; i < products.size(); i++) {
+        //    dataPoints.getData().add(new XYChart.Data<>(products.get(i).getProductName(), products.get(i).getProductAmount()));
+        //}
 
-        chart.getData().add(dataPoints);
+        //chart.getData().add(dataPoints);
+        //chart.getData().remove(dataPoints);
 
         // Code for listing data
         VBox vBox = new VBox();
@@ -64,4 +88,17 @@ public class AdminInternalViewer {
     	ReadProductViewers modelConnect = new ReadProductViewers();
         return modelConnect.read();
     }
+    
+    public void updateBarGraph() {
+    	ArrayList<ProductBasicInfo> products = fetchData();
+        for (int i = 0; i < products.size(); i++) {
+            this.dataPoints.getData().add(new XYChart.Data<>(products.get(i).getProductName(), products.get(i).getProductAmount()));
+        }
+        this.chart.getData().add(this.dataPoints);
+    }
+    
+    public void clearBarGraph() {
+    	this.chart.getData().remove(this.dataPoints); 
+    }
+    
 }

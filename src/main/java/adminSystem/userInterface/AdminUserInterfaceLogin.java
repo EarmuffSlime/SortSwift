@@ -25,7 +25,7 @@ import javafx.scene.layout.VBox;
 
 public class AdminUserInterfaceLogin {
 	
-	private AdminInternalViewer adminView = new AdminInternalViewer();
+	private AdminInternalViewer adminView = AdminInternalViewer.getInstance();
 	private Stage primaryStage;
 	private ArrayList<AdminCredential> adminList;
 	
