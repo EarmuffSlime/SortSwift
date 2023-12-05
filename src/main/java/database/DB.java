@@ -7,9 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import utilities.structure.ProductInformation;
-import utilities.structure.ProductUpdate;
-
 public class DB {
 
 	public static String url;

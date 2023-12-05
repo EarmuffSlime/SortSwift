@@ -29,10 +29,17 @@ public class UpdatePublisher {
 	}
 	
 	
-	public void notify(String name, int amount) {
-		Update productUpdate = ProductUpdate.createUpdate(name, amount);
+	public void productNotify(ProductBasicInfo product) {
+		Update productUpdate = ProductUpdate.createUpdate(product.getProductName(), product.getProductAmount());
 		for (int i = 0; i < productSubscriber.size(); i++) {
 			productSubscriber.get(i).update(productUpdate);
+		}
+	}
+	
+	public void restockNotify(RestockRequest restock) {
+		Update restockUpdate = RestockUpdate.createUpdate(restock.getProductName(), restock.getProductAmount(), restock.getRestockCount());
+		for (int i = 0; i < productSubscriber.size(); i++) {
+			productSubscriber.get(i).update(restockUpdate);
 		}
 	}
 }

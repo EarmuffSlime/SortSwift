@@ -1,11 +1,13 @@
 package modelSystem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import utilities.structure.*;
 
 public class Model {
 	private static Model instance;
 	private HashMap<Integer, ProductInformation> productListing;
+	private ArrayList<Integer> idList;
 	
 	private Model() {
 		this.productListing = new HashMap<Integer, ProductInformation>();
@@ -19,7 +21,19 @@ public class Model {
 		return instance;
 	}
 	
-	public HashMap<Integer, ProductInformation> getProductListing(){
+	public HashMap<Integer, ProductInformation> getProductListing() {
 		return this.productListing;
+	}
+	
+	public void setProductListing(HashMap<Integer, ProductInformation> newListing) {
+		this.productListing = newListing;
+	}
+	
+	public ArrayList<Integer> getidList() {
+		return this.idList;
+	}
+	
+	public void setidList(ArrayList<Integer> newidList) {
+		this.idList = newidList;
 	}
 }

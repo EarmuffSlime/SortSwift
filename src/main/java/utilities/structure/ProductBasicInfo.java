@@ -1,9 +1,19 @@
 package utilities.structure;
 
-public abstract class Request {
-	protected int productID;
-	protected String productName;
-	protected int productAmount;
+public class ProductBasicInfo extends Request{
+	private int productID;
+	private String productName;
+	private int productAmount;
+	
+	public ProductBasicInfo(int productID, int amount) {
+		this.productID = productID;
+		this.productAmount = amount;
+	}
+	
+	public ProductBasicInfo(String productName, int amount) {
+		this.productName = productName;
+		this.productAmount = amount;
+	}
 	
 	public int getProductID() {
 		return productID;
@@ -26,5 +36,6 @@ public abstract class Request {
 	public void setProductAmount(int productAmount) {
 		this.productAmount = productAmount;
 	}
+	
 	
 }
