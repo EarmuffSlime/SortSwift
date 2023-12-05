@@ -6,17 +6,19 @@ import utilities.structure.Request;
 
 public class ControllerProductPurchase implements IController{
 
-	public void access(ProductBasicInfo request) {
+	
+	public ControllerProductPurchase() {
+		
+	}
+	
+	public String access(ProductBasicInfo request) {
 		//Call function controlerPuchaseLogic
-		ControllerPurchaseLogic.purchase(request);
+		System.out.println("Controller1");
+		
+		return ControllerPurchaseLogic.purchase(request);
 		
 	}
 
-	@Override
-	public void access(Request request) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
 

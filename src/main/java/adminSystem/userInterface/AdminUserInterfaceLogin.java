@@ -1,6 +1,12 @@
 package adminSystem.userInterface;
 	
 import javafx.stage.Stage;
+import utilities.structure.AdminCredential;
+
+import java.util.ArrayList;
+
+import adminSystem.AdminInitializer;
+import database.AdminConnection;
 import database.DB;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,16 +25,17 @@ import javafx.scene.layout.VBox;
 
 public class AdminUserInterfaceLogin {
 	
-	final String USER_CREDS = "J";
-	final String PASS_CREDS = "1";
-	private AdminInternalViewer adminView = new AdminInternalViewer();
+	private AdminInternalViewer adminView = AdminInternalViewer.getInstance();
 	private Stage primaryStage;
+	private ArrayList<AdminCredential> adminList;
 	
 	public AdminUserInterfaceLogin() {}
 	
 	public void loginStart(Stage primaryStage) {
 		
 		DB database = DB.getDb();
+		AdminConnection adminConnect = new AdminConnection();
+		this.adminList = adminConnect.connect();
 		
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Login Screen");
@@ -61,18 +68,20 @@ public class AdminUserInterfaceLogin {
 		
 		System.out.println("Username entered: " + username);
 		System.out.println("Password entered: " + password);
-		if (USER_CREDS.equals(username) && PASS_CREDS.equals(password)) {
-			System.out.println("LOGGED IN");
-			
-			
-		} else {
-			System.out.println("WRONG CREDS!");
+		for (int i = 0; i < adminList.size(); i++) {
+			if (adminList.get(i).getUsername().equals(username)) {
+				if (adminList.get(i).getPassword().equals(password)) {
+					System.out.println("LOGGED IN");
+					initiateSystem();
+				}
+			}
 		}
 	}
 	
 	
 	private void initiateSystem() {
-		
+		AdminInitializer adminInit = new AdminInitializer();
+		adminInit.startSystems();
 		adminView.adminStart(primaryStage);
 	}
 	

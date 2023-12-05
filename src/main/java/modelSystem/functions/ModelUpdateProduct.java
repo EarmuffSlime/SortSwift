@@ -11,8 +11,10 @@ import modelSystem.observer.UpdatePublisher;
 public class ModelUpdateProduct {
 	
 	public static void DecreaseStoredProducts(ProductBasicInfo request) {
+		System.out.println("ModelUpdate1");
 		HashMap<Integer, ProductInformation> productListing = Model.getModel().getProductListing();
 		productListing.get(request.getProductID()).setQuantity(productListing.get(request.getProductID()).getQuantity()-request.getProductAmount());
+		System.out.println("ModelUpdate2");
 		UpdatePublisher.getPublisher().productNotify(request);
 	}
 	

@@ -8,7 +8,7 @@ public abstract class PricingStrategy {
 
 	public double totalPrize(ProductBasicInfo request) {
 		ReadProductController modelConnection = new ReadProductController();
-		
+		System.out.println("Price1");
 		return request.getProductAmount() * modelConnection.readSpecific(request.getProductID()).getPrice();
 		
 		//return (Model.getModel().getProductListing().get(request.getProductID()).getMaxQuantity()) *

@@ -15,6 +15,11 @@ public class ProductBasicInfo extends Request{
 		this.productAmount = amount;
 	}
 	
+	public ProductBasicInfo(int productID, String productName) {
+		this.productID = productID;
+		this.productName = productName;
+	}
+	
 	public int getProductID() {
 		return productID;
 	}
