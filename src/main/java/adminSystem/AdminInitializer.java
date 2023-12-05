@@ -18,6 +18,18 @@ public class AdminInitializer {
 		
 		ModelStart modelLoader = new ModelStart();
 		modelLoader.modelLoad();
+		
+		AdminServer anHttpServer = new AdminServer();
+		
+		try {
+			anHttpServer.startServer();
+			System.out.println("Server Initiated");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
 	}
 	
 	

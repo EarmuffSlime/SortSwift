@@ -9,7 +9,7 @@ import controllerSystem.restock.RestockingProcess;
 import modelSystem.*;
 
 public class ControllerPurchaseLogic {
-	public static void purchase(ProductBasicInfo request) {
+	public static String purchase(ProductBasicInfo request) {
 		//Compare with model product list
 		
 		// Exceeds max stock quantity
@@ -17,6 +17,7 @@ public class ControllerPurchaseLogic {
 							Model.getModel().getProductListing().get(request.getProductID()).getMaxQuantity()) {
 			
 			ExceedsMaxQuantity.productExceedsMaxQuantity(request);
+			return "Order exceeds the max quantity set for this product";
 		}
 		// Request does not exceed max stock quantity
 		else {
@@ -36,7 +37,7 @@ public class ControllerPurchaseLogic {
 			
 			// Submit the purchase request to model
 			new ModelRestock().accessModel(request);
-			System.out.println("“Order is finalized for Product " + request.getProductID() +  
+			return ("“Order is finalized for Product " + request.getProductID() +  
 									"and Quantity "+ request.getProductAmount()+ " with total price " + finalPrice);
 			
 			

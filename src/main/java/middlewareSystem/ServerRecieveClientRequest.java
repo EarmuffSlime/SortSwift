@@ -1,14 +1,21 @@
 package middlewareSystem;
 
 import utilities.structure.Request;
-import utilities.structure.Response;
+import controllerSystem.connector.ControllerProductPurchase;
+import utilities.structure.*;
 
-public class ServerRecieveClientRequest implements IModelInterface{
+public class ServerRecieveClientRequest implements IMiddleInterface{
 
-	@Override
-	public Response communicate(Request request) {
-		// TODO Auto-generated method stub
-		return null;
+	public String communicate(String productName, String productAmount) {
+		
+		int productID = new Middleware().matchNameToID(productName);
+		
+		ProductBasicInfo newRequest = new ProductBasicInfo(productID, Integer.parseInt(productAmount));
+		
+		ControllerProductPurchase connect = new ControllerProductPurchase();
+		
+		return connect.access(newRequest);
+		
 	}
 
 }

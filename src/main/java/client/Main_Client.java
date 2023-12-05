@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -17,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import modelSystem.connector.ReadProductClient;
 
 public class Main_Client extends JFrame implements ActionListener {
 	
@@ -50,11 +53,16 @@ public class Main_Client extends JFrame implements ActionListener {
 		JLabel chooseProductLabel = new JLabel(": ");
 		Vector<String> productNames = new Vector<String>();
 		productList = new JComboBox<String>(productNames);
-		productNames.add("Product1");
-		productNames.add("Product2");
-		productNames.add("Product3");
-		productNames.add("Product4");
-		productNames.add("Product5");
+		
+		ClientCaller clientCall = new ClientCaller();
+		String productNameString = clientCall.doThehttpCall2("GiveProducts");
+		
+		String[] productNameList = productNameString.split(" ");
+		
+		for (int i = 0; i < productNameList.length; i++) {
+			productNames.add(productNameList[i]);
+		}
+		
 		productNames.sort(null);
 
 		JButton addProduct = new JButton("Choose");
@@ -155,9 +163,12 @@ public class Main_Client extends JFrame implements ActionListener {
 			timeReport = "Client Time Stamp : " + java.time.LocalDateTime.now().toString() + "\n";
 
 			orderDetails.setText(productReport + quantityReport + timeReport + "\n");
-
+			ClientCaller clientCall = new ClientCaller();
+			String response = clientCall.doThehttpCall1(theProduct, theQuantity);
 		}
 	}
+	
+	
 	
 	// TODO Auto-generated method stub
 
