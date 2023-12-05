@@ -78,6 +78,13 @@ public class DB {
 
 	// Method to retrieve data from products table
 	 public ArrayList<ProductInformation> getProduct() {
+		 /* Products in DB
+		  * Product ID: 2, Product Name: Apple, Price: 3.5, Quantity: 100, PRC Strategy: 1, Max Quantity: 1000, Min Quantity: 50, Rest Quantity: 75
+			Product ID: 3, Product Name: TV, Price: 299.99, Quantity: 50, PRC Strategy: 1, Max Quantity: 100, Min Quantity: 10, Rest Quantity: 5
+			Product ID: 4, Product Name: Milk, Price: 6.5, Quantity: 200, PRC Strategy: 2, Max Quantity: 1000, Min Quantity: 100, Rest Quantity: 75
+			Product ID: 5, Product Name: Apple, Price: 3999.99, Quantity: 30, PRC Strategy: 3, Max Quantity: 50, Min Quantity: 20, Rest Quantity: 10
+			Product ID: 6, Product Name: Laptop, Price: 999.99, Quantity: 10, PRC Strategy: 1, Max Quantity: 20, Min Quantity: 5, Rest Quantity: 8
+		  */
 	        try {
 	            String selectProductsQuery = "SELECT * FROM products";
 	            Statement statement = conn.createStatement();
@@ -137,6 +144,14 @@ public class DB {
 		    }
 		}
 	  public ArrayList<AdminCredential> getAdminsInfo() {
+		  /*
+		   * 	Entries in Admin Database
+		   * 	Admin ID: 0, Username: adminUser, Password: adminPass
+				Admin ID: 1, Username: username, Password: password
+				Admin ID: 2, Username: cheese, Password: cheese
+				Admin ID: 3, Username: music, Password: man
+				Admin ID: 4, Username: Hello, Password: World
+		   */
 		    try {
 		        String selectAdminsQuery = "SELECT * FROM admins_info";
 		        Statement statement = conn.createStatement();
@@ -175,19 +190,47 @@ public class DB {
 		        e.printStackTrace();
 		    }
 		}
-	  
+
+	  public void deleteAdmin(String adminId) {
+		    try {
+		        String deleteAdminQuery = "DELETE FROM admins_info WHERE admin_id = ?";
+		        PreparedStatement pstmt = conn.prepareStatement(deleteAdminQuery);
+		        pstmt.setString(1, adminId);
+
+		        int rowsAffected = pstmt.executeUpdate();
+
+		        if (rowsAffected > 0) {
+		            System.out.println("Admin with ID " + adminId + " deleted successfully.");
+		        } else {
+		            System.out.println("Admin with ID " + adminId + " not found.");
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}
+
 	  
 	public static void main(String[] args) {
 		DB db = DB.getDb();
 
 //		// Add admin
-//		db.addAdmin("admin123", "adminUser", "adminPass");
+		
+		//db.addProduct("Laptop", 999.99, 10, "1", 20, 5, 8); 
+		/*
+		db.addProduct("Apple", 3.50, 100, "1", 1000, 50, 75);
+		db.addProduct("TV", 299.99, 50, "1", 100, 10, 5);
+		db.addProduct("Milk", 6.50, 200, "2", 1000, 100, 75);
+		
+		*/
+		// Delete Admin
+		//db.addProduct("Toyota", 3999.99, 30, "3", 50, 20, 10);
+		//db.deleteProduct(5);
 ////
 //		// Retrieve admins
-	db.getAdminsInfo();
+		//db.getAdminsInfo();
 
 		
 		// Retrieve products
-		db.getProduct();
+		//db.getProduct();
 	}
 }

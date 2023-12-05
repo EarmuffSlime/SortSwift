@@ -1,5 +1,7 @@
 package adminSystem.userInterface;
 
+import java.util.ArrayList;
+
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -9,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import modelSystem.connector.ReadProductViewers;
+import utilities.structure.ProductBasicInfo;
 import utilities.structure.ProductInformation;
 
 public class AdminInternalViewer {
@@ -17,7 +21,7 @@ public class AdminInternalViewer {
     public void adminStart(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
-        ProductInformation[] products = fetchData();
+        ArrayList<ProductBasicInfo> products = fetchData();
 
         // Code for making the chart
         // x Axis
@@ -35,8 +39,8 @@ public class AdminInternalViewer {
         XYChart.Series<String, Number> dataPoints = new XYChart.Series<>();
         dataPoints.setName("Products");
 
-        for (int i = 0; i < products.length; i++) {
-            dataPoints.getData().add(new XYChart.Data<>(products[i].getName(), products[i].getQuantity()));
+        for (int i = 0; i < products.size(); i++) {
+            dataPoints.getData().add(new XYChart.Data<>(products.get(i).getProductName(), products.get(i).getProductAmount()));
         }
 
         chart.getData().add(dataPoints);
@@ -44,8 +48,8 @@ public class AdminInternalViewer {
         // Code for listing data
         VBox vBox = new VBox();
 
-        for (int i = 0; i < products.length; i++) {
-            Label l = new Label(products[i].getName() + " \n\tQty ==> " + products[i].getQuantity());
+        for (int i = 0; i < products.size(); i++) {
+            Label l = new Label(products.get(i).getProductName() + " \n\tQty ==> " + products.get(i).getProductAmount());
             vBox.getChildren().add(l);
         }
 
@@ -56,13 +60,8 @@ public class AdminInternalViewer {
         primaryStage.setScene(scene);
     }
 
-    private ProductInformation[] fetchData() {
-        // Implement your data fetching logic here, for example, from a database or file
-        // For demonstration purposes, creating dummy data
-        return new ProductInformation[]{
-                ProductInformation.createProduct(1, "Product1", 10, 50, 100, 10, 20, 1),
-                ProductInformation.createProduct(2, "Product2", 20, 30, 80, 5, 15, 2),
-                // Add more products as needed
-        };
+    private ArrayList<ProductBasicInfo> fetchData() {
+    	ReadProductViewers modelConnect = new ReadProductViewers();
+        return modelConnect.read();
     }
 }

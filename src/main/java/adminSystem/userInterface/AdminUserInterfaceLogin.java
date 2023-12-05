@@ -25,8 +25,6 @@ import javafx.scene.layout.VBox;
 
 public class AdminUserInterfaceLogin {
 	
-	final String USER_CREDS = "J";
-	final String PASS_CREDS = "1";
 	private AdminInternalViewer adminView = new AdminInternalViewer();
 	private Stage primaryStage;
 	private ArrayList<AdminCredential> adminList;
@@ -70,12 +68,13 @@ public class AdminUserInterfaceLogin {
 		
 		System.out.println("Username entered: " + username);
 		System.out.println("Password entered: " + password);
-		if (USER_CREDS.equals(username) && PASS_CREDS.equals(password)) {
-			System.out.println("LOGGED IN");
-			initiateSystem();
-			
-		} else {
-			System.out.println("WRONG CREDS!");
+		for (int i = 0; i < adminList.size(); i++) {
+			if (adminList.get(i).getUsername().equals(username)) {
+				if (adminList.get(i).getPassword().equals(password)) {
+					System.out.println("LOGGED IN");
+					initiateSystem();
+				}
+			}
 		}
 	}
 	
