@@ -10,7 +10,8 @@ public class ModelRestock implements IModelWrite{
 		
 	}
 	
-	private void access(RestockRequest request) {
+	public void access(RestockRequest request) {
+		System.out.println("Restock1");
 		ModelUpdateProduct.IncreaseStoredProducts(request);
 	}
 	

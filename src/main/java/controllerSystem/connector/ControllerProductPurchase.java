@@ -13,6 +13,8 @@ public class ControllerProductPurchase implements IController{
 	
 	public String access(ProductBasicInfo request) {
 		//Call function controlerPuchaseLogic
+		System.out.println("Controller1");
+		
 		return ControllerPurchaseLogic.purchase(request);
 		
 	}

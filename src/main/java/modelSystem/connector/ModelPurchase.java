@@ -10,7 +10,8 @@ public class ModelPurchase implements IModelWrite{
 		
 	}
 	
-	private void access(ProductBasicInfo request) {
+	public void access(ProductBasicInfo request) {
+		System.out.println("Purchase1");
 		ModelUpdateProduct.DecreaseStoredProducts(request);
 	}
 	

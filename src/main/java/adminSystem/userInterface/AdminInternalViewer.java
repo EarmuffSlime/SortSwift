@@ -74,6 +74,7 @@ public class AdminInternalViewer {
     }
     
     public void updateBarGraph() {
+    	System.out.println("Bar");
     	ArrayList<ProductBasicInfo> products = fetchData();
         for (int i = 0; i < products.size(); i++) {
             this.dataPoints.getData().add(new XYChart.Data<>(products.get(i).getProductName(), products.get(i).getProductAmount()));

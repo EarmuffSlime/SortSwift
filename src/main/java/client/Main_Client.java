@@ -164,7 +164,11 @@ public class Main_Client extends JFrame implements ActionListener {
 
 			orderDetails.setText(productReport + quantityReport + timeReport + "\n");
 			ClientCaller clientCall = new ClientCaller();
+			System.out.println(theProduct);
+			System.out.println(theQuantity);
 			String response = clientCall.doThehttpCall1(theProduct, theQuantity);
+			System.out.println(response);
+			orderDetails.setText(productReport + quantityReport + timeReport + "\n" + response);
 		}
 	}
 	

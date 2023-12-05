@@ -11,6 +11,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+import middlewareSystem.ServerRecieveClientRequest;
 import modelSystem.connector.ReadProductClient;
 
 public class AdminServer {
@@ -24,27 +25,31 @@ public class AdminServer {
 
 	static class MyHandler1 implements HttpHandler {
 		public void handle(HttpExchange exchange) throws IOException {
+			System.out.println("Handler1");
 			Map<String, String> parms = queryToMap(exchange.getRequestURI().getQuery());
-			
-			 parms.get("p1")
+			System.out.println("Handler1.1");
+			ServerRecieveClientRequest connect = new ServerRecieveClientRequest();
+			System.out.println("Handler1.2");
+			String output = connect.communicate(parms.get("p1"), parms.get("p2"));
+			System.out.println("Handler1.3");
 			
 			String response = "Hello World! " + "P1 was: " + parms.get("p1") + " and p2 was: " + parms.get("p2");
-			exchange.sendResponseHeaders(200, response.length());
+			exchange.sendResponseHeaders(200, output.length());
 			OutputStream os = exchange.getResponseBody();
-			os.write(response.getBytes());
-			try {
-				wait(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			response = " FOO";
-			exchange.sendResponseHeaders(200, response.length());
-			OutputStream os2 = exchange.getResponseBody();
-			os2 = exchange.getResponseBody();
-			os2.write(response.getBytes());
+			os.write(output.getBytes());
+			//try {
+			//	wait(1000);
+			//} catch (InterruptedException e) {
+			//	// TODO Auto-generated catch block
+			//	e.printStackTrace();
+			//}
+			//response = " FOO";
+			//exchange.sendResponseHeaders(200, output.length());
+			//OutputStream os2 = exchange.getResponseBody();
+			//os2 = exchange.getResponseBody();
+			//os2.write(output.getBytes());
 			os.close();
-			os2.close();
+			//os2.close();
 		}
 	}
 	

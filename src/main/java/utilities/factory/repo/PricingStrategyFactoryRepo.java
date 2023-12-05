@@ -14,10 +14,12 @@ public class PricingStrategyFactoryRepo {
 
 
 	private HashMap< Integer , IPricingStrategyFactory> theFactoryRepo;
-		
-	private PricingStrategyFactoryRepo pricingStrategyFactoryRepo() {
-		return new PricingStrategyFactoryRepo();
+	
+	private PricingStrategyFactoryRepo() {
+		this.theFactoryRepo = new HashMap<Integer, IPricingStrategyFactory>();
 	}
+	
+
 		
 	public static PricingStrategyFactoryRepo getInstance() {
 		if(instance == null) {

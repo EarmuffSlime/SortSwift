@@ -31,11 +31,11 @@ public class ClientCaller {
 					inline += sc.nextLine();
 				}
 				sc.close();
-			
 				return inline;
 			}
 
 		} catch (IOException e) {
+			System.out.println(e);
 			System.out.println("Something went wrong with the API call.");
 		}
 		return null;
@@ -59,11 +59,11 @@ public class ClientCaller {
 					inline += sc.nextLine();
 				}
 				sc.close();
-				System.out.println(inline);
 				return inline;
 			}
 
 		} catch (IOException e) {
+			System.out.println(e);
 			System.out.println("Something went wrong with the API call.");
 		}
 		return null;
