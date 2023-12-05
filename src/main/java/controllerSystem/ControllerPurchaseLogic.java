@@ -1,14 +1,15 @@
 package controllerSystem;
 
-import modelSystem.connector.ModelProductAccess;
-import pricingStrategy.PricingStrategy;
-import utilities.structure.ModelProductRequest;
-import controller.restock.RestockingProcess;
-import factoryRepo.PricingStrategyFactoryRepo;
+import modelSystem.connector.ModelRestock;
+import modelSystem.connector.ReadProductController;
+import utilities.factory.repo.PricingStrategyFactoryRepo;
+import utilities.structure.ProductBasicInfo;
+import controllerSystem.pricingStrategy.PricingStrategy;
+import controllerSystem.restock.RestockingProcess;
 import modelSystem.*;
 
 public class ControllerPurchaseLogic {
-	public static void purchase(ModelProductRequest request) {
+	public static void purchase(ProductBasicInfo request) {
 		//Compare with model product list
 		
 		// Exceeds max stock quantity
@@ -17,23 +18,29 @@ public class ControllerPurchaseLogic {
 			
 			ExceedsMaxQuantity.productExceedsMaxQuantity(request);
 		}
-		
-		int currentQuantity = Model.getModel().getProductListing().get(request.getProductID()).getQuantity();
-		
-		// need to restock product 
-		if(request.getProductAmount() > currentQuantity) {
+		// Request does not exceed max stock quantity
+		else {
 			
-			RestockingProcess.doRestock(request.getProductID());
+			// If restock required
+			if(request.getProductAmount() > Model.getModel().getProductListing().get(request.getProductID()).getQuantity()) {
+				
+				// Submit restock request to model
+				RestockingProcess.doRestock(request.getProductID());
+			}
+			
+			//Calculates Price Based on Strategy
+			PricingStrategyFactoryRepo repo = PricingStrategyFactoryRepo.getInstance();
+			PricingStrategy ps = repo.getTheFactoryRepo().get(Model.getModel().getProductListing().get(request.getProductID()).getDiscountID()).create();
+			
+			double finalPrice = (ps.totalPrize(request)) - (ps.discount(request));
+			
+			// Submit the purchase request to model
+			new ModelRestock().accessModel(request);
+			System.out.println("“Order is finalized for Product " + request.getProductID() +  
+									"and Quantity "+ request.getProductAmount()+ " with total price " + finalPrice);
+			
+			
 		}
-		
-		PricingStrategyFactoryRepo repo = PricingStrategyFactoryRepo.getInstance();
-		PricingStrategy ps = repo.getTheFactoryRepo().get(Model.getModel().getProductListing().get(request.getProductID()).getDiscountID()).create();
-		
-		double finalPrice = (ps.totalPrize(request)) - (ps.discount(request));
-		
-		ModelProductAccess.accessModel(request);
-		System.out.println("“Order is finalized for Product " + request.getProductID() +  
-								"and Quantity "+ request.getProductAmount()+ " with total price " + finalPrice);
 		
 		
 	}

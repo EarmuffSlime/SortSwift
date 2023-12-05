@@ -3,14 +3,22 @@ package modelSystem.functions;
 import java.util.HashMap;
 
 import modelSystem.Model;
+import utilities.structure.ProductBasicInfo;
 import utilities.structure.ProductInformation;
+import utilities.structure.RestockRequest;
 import modelSystem.observer.UpdatePublisher;
 
 public class ModelUpdateProduct {
 	
-	public static void updateProducts(int productID, int amount) {
+	public static void DecreaseStoredProducts(ProductBasicInfo request) {
 		HashMap<Integer, ProductInformation> productListing = Model.getModel().getProductListing();
-		productListing.get(productID).setQuantity(productListing.get(productID).getQuantity()-amount);
-		UpdatePublisher.getPublisher().notify(productListing.get(productID).getName(), amount);
+		productListing.get(request.getProductID()).setQuantity(productListing.get(request.getProductID()).getQuantity()-request.getProductAmount());
+		UpdatePublisher.getPublisher().productNotify(request);
+	}
+	
+	public static void IncreaseStoredProducts(RestockRequest request) {
+		HashMap<Integer, ProductInformation> productListing = Model.getModel().getProductListing();
+		productListing.get(request.getProductID()).setQuantity(productListing.get(request.getProductID()).getQuantity()+request.getProductAmount());
+		UpdatePublisher.getPublisher().restockNotify(request);
 	}
 }
