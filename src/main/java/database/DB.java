@@ -171,9 +171,7 @@ public class DB {
 	
 	db.getAdminsInfo();
 
-		//db.addProduct("Mobile", 100000, 100, 1, 100, 5, 8);
-
-
+		
 		db.getProduct();
 	}
 }
