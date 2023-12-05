@@ -23,7 +23,7 @@ public class RestockingProcess implements IRestockInterface {
 		
 		int restockCounter = 0;
 		
-		while(maxQuantity < currentQuantity) {
+		while(maxQuantity > currentQuantity) {
 			if(maxQuantity - currentQuantity >= restock) {
 				currentQuantity = currentQuantity + restock;
 			}
@@ -40,11 +40,11 @@ public class RestockingProcess implements IRestockInterface {
 		RestockRequest request = new RestockRequest(productID, modelConnection.readSpecific(productID).getName(), maxQuantity, restockCounter);
 		
 		ModelRestock restockConnection = new ModelRestock();
-		restockConnection.accessRestock(request);
+		restockConnection.access(request);
 		
 		
 		Model.getModel().getProductListing().get(productID).setQuantity(currentQuantity);
-		System.out.println("Restocking Operation for Product "+ productID + " completed");
+		System.out.println("Restocking Operation for Product "+ productID + " completed " + restockCounter + " restocks were preformed");
 	}
 	
 	
