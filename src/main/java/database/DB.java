@@ -35,7 +35,7 @@ public class DB {
 			conn = DriverManager.getConnection(url);
 			Statement statement = conn.createStatement();
 
-			String create_adminTable = "CREATE TABLE IF NOT EXISTS admins_info (" + "admin_id TEXT NOT NULL UNIQUE, "
+			String create_adminTable = "CREATE TABLE IF NOT EXISTS admins_info (" + "admin_id INTEGER PRIMARY KEY, "
 					+ "username TEXT, " + "password TEXT, " + "PRIMARY KEY (username, password)" + ");";
 
 			String create_productTable = "CREATE TABLE IF NOT EXISTS products (" + "product_id INTEGER PRIMARY KEY, "
@@ -129,6 +129,38 @@ public class DB {
 		        e.printStackTrace();
 		    }
 		}
+	  public void getAdminsInfo() {
+		    try {
+		        String selectAdminsQuery = "SELECT * FROM admins_info";
+		        Statement statement = conn.createStatement();
+		        ResultSet resultSet = statement.executeQuery(selectAdminsQuery);
+
+		        while (resultSet.next()) {
+		            String adminId = resultSet.getString("admin_id");
+		            String username = resultSet.getString("username");
+		            String password = resultSet.getString("password");
+
+		            System.out.println("Admin ID: " + adminId + ", Username: " + username + ", Password: " + password);
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}
+	  public void addAdmin(String adminId, String username, String password) {
+		    try {
+		        String insertAdminQuery = "INSERT INTO admins_info (admin_id, username, password) VALUES (?, ?, ?)";
+		        PreparedStatement pstmt = conn.prepareStatement(insertAdminQuery);
+		        pstmt.setString(1, adminId);
+		        pstmt.setString(2, username);
+		        pstmt.setString(3, password);
+
+		        pstmt.executeUpdate();
+
+		        System.out.println("Admin added successfully.");
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}
 	  
 	  
 	public static void main(String[] args) {
@@ -136,9 +168,9 @@ public class DB {
 
 //		// Add admin
 //		db.addAdmin("admin123", "adminUser", "adminPass");
-//
+////
 //		// Retrieve admins
-//		db.getAdmins();
+	db.getAdminsInfo();
 
 		
 		// Retrieve products
