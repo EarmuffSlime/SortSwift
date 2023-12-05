@@ -53,7 +53,7 @@ public class DB {
 
 
 	// Method to add data to products table
-	public void addProduct(String productName, double price, int quantity, String prcStrategy, int maxQuantity,
+	public void addProduct(String productName, double price, int quantity, int prcStrategy, int maxQuantity,
 			int minQuantity, int restQuantity) {
 		try {
 			String insertProductQuery = "INSERT INTO products (product_name, price, quantity, PRCStrategy, MaxQuantity, MinQuantity, RestQuantity) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -61,7 +61,7 @@ public class DB {
 			pstmt.setString(1, productName);
 			pstmt.setDouble(2, price);
 			pstmt.setInt(3, quantity);
-			pstmt.setString(4, prcStrategy);
+			pstmt.setInt(4, prcStrategy);
 			pstmt.setInt(5, maxQuantity);
 			pstmt.setInt(6, minQuantity);
 			pstmt.setInt(7, restQuantity);
@@ -164,17 +164,16 @@ public class DB {
 	  
 	  
 	public static void main(String[] args) {
-		DB db = DB.getDb();
+	
+		DB db = new DB();
 
-//		// Add admin
-//		db.addAdmin("admin123", "adminUser", "adminPass");
-////
-		db.addAdmin(1,"viral10", "1234");
-//		// Retrieve admins
+	
+	
 	db.getAdminsInfo();
 
-		
-		// Retrieve products
+		//db.addProduct("Mobile", 100000, 100, 1, 100, 5, 8);
+
+
 		db.getProduct();
 	}
 }
